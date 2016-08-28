@@ -7,7 +7,9 @@ package shulesoft;
 
 import javax.swing.JFrame;
 import javax.swing.UIManager;
+import studentManagement.editStudentDetails;
 import studentManagement.studentRegistration;
+import studentManagement.viewStudents;
 
 /**
  *
@@ -55,16 +57,26 @@ public class DashBoard extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jButton3.setText("jButton3");
+        jButton3.setText("NEW STUDENT REGISTRATION");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
-        jButton4.setText("jButton4");
+        jButton4.setText("EDIT STUDENT DETAILS");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
-        jButton5.setText("jButton5");
+        jButton5.setText("VIEW REGISTERED STUDENTS");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -82,22 +94,22 @@ public class DashBoard extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton3)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton5)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton2.setText("jButton2");
+        jButton2.setText("STUDENT MANAGEMENT");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton6.setText("jButton6");
+        jButton6.setText("EXAMS MANAGEMENT");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -234,6 +246,26 @@ public class DashBoard extends javax.swing.JFrame {
         studentRegistration.setLocation(width, height);
         studentRegistration.show();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        editStudentDetails editStudentDetails = new editStudentDetails();
+        jDesktopPane1.add(editStudentDetails);
+        int width = (jDesktopPane1.getWidth() - editStudentDetails.getWidth()) / 2;
+        int height = (jDesktopPane1.getHeight() - editStudentDetails.getHeight()) / 2;
+        editStudentDetails.setLocation(width, height);
+        editStudentDetails.show();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        viewStudents viewStudents = new viewStudents();
+        jDesktopPane1.add(viewStudents);
+        int width = (jDesktopPane1.getWidth() - viewStudents.getWidth()) / 2;
+        int height = (jDesktopPane1.getHeight() - viewStudents.getHeight()) / 2;
+        viewStudents.setLocation(width, height);
+        viewStudents.show();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments

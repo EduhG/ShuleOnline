@@ -47,6 +47,8 @@ public class viewStudents extends javax.swing.JInternalFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
+        setClosable(true);
+
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Search Students"));
 
         jLabel1.setText("Class/Form");

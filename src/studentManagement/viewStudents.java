@@ -5,6 +5,17 @@
  */
 package studentManagement;
 
+import database.dbConnection;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author EduhG
@@ -30,24 +41,41 @@ public class viewStudents extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cboClasses = new javax.swing.JComboBox<>();
+        cboStreams = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        txtAdmNo = new javax.swing.JTextField();
+        cboGender = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jComboBox4 = new javax.swing.JComboBox<>();
-        jTextField2 = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
 
         setClosable(true);
+        setTitle("View Students");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Search Students"));
 
@@ -55,21 +83,51 @@ public class viewStudents extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Stream");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboClasses.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Class" }));
+        cboClasses.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboClassesActionPerformed(evt);
+            }
+        });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboStreams.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Stream" }));
+        cboStreams.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboStreamsActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Gender");
 
         jLabel4.setText("Adm No.");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        txtAdmNo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtAdmNoKeyReleased(evt);
+            }
+        });
+
+        cboGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Gender", "Male", "Female" }));
+        cboGender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboGenderActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Name");
 
         jLabel5.setText("Search By");
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "First Name", "Last Name", "Middle Name" }));
+
+        txtName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNameKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNameKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -82,16 +140,16 @@ public class viewStudents extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox1, 0, 209, Short.MAX_VALUE)
-                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cboClasses, 0, 209, Short.MAX_VALUE)
+                    .addComponent(cboStreams, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox3, 0, 163, Short.MAX_VALUE)
-                    .addComponent(jTextField1))
+                    .addComponent(cboGender, 0, 163, Short.MAX_VALUE)
+                    .addComponent(txtAdmNo))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
@@ -99,7 +157,7 @@ public class viewStudents extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField2))
+                    .addComponent(txtName))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -108,23 +166,28 @@ public class viewStudents extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboClasses, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboGender, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboStreams, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAdmNo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jButton1.setText("Filter");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Clear");
 
@@ -136,14 +199,12 @@ public class viewStudents extends javax.swing.JInternalFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Adm No", "Middle Name", "First Name", "Last Name", "Adm Type", "Status"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton3.setText("jButton3");
-
-        jButton4.setText("jButton4");
+        jButton3.setText("DELETE");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -153,18 +214,15 @@ public class viewStudents extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 811, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 604, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -179,24 +237,275 @@ public class viewStudents extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        // TODO add your handling code here:
+        getForms();
+        getStreams();
+        loadStudents();
+    }//GEN-LAST:event_formInternalFrameOpened
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        filterDetails();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyReleased
+        // TODO add your handling code here:
+        filterDetails();
+    }//GEN-LAST:event_txtNameKeyReleased
+
+    private void cboGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboGenderActionPerformed
+        // TODO add your handling code here:
+        //filterDetails();
+    }//GEN-LAST:event_cboGenderActionPerformed
+
+    private void cboStreamsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboStreamsActionPerformed
+        // TODO add your handling code here:
+        //filterDetails();
+    }//GEN-LAST:event_cboStreamsActionPerformed
+
+    private void cboClassesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboClassesActionPerformed
+        // TODO add your handling code here:
+        //filterDetails();
+    }//GEN-LAST:event_cboClassesActionPerformed
+
+    private void txtNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyPressed
+        // TODO add your handling code here:
+        filterDetails();
+    }//GEN-LAST:event_txtNameKeyPressed
+
+    private void txtAdmNoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAdmNoKeyReleased
+        // TODO add your handling code here:
+        filterDetails();
+    }//GEN-LAST:event_txtAdmNoKeyReleased
+
+    public void filterDetails() {
+        dbConnection dc = new dbConnection();
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        Statement stmt = null;
+        
+        try {
+            Class.forName(dc.JDBC_DRIVER);
+            con = DriverManager.getConnection(dc.DATABASE_URL, dc.USERNAME, dc.PASSWORD);
+            String filters = "";
+            
+            if (cboClasses.getSelectedItem().toString() != "Choose Class") {
+                filters += " AND form='"+cboClasses.getSelectedItem().toString()+"'";
+            }
+            if (cboStreams.getSelectedItem().toString() != "Choose Class") {
+                filters += " AND form= '" + cboStreams.getSelectedItem().toString() + "'";
+            }
+            if (cboGender.getSelectedItem().toString() != "Choose Gender") {
+                filters += " AND gender='"+cboGender.getSelectedItem().toString()+"'";
+            }
+            
+            if (txtAdmNo.getText().length() > 0) {
+                filters += " AND admissionNo LIKE '%"+txtAdmNo.getText()+"%'";
+            }
+            
+            if (jComboBox4.getSelectedItem() != "First Name") {
+                filters += " AND firstname LIKE '%"+txtName.getText()+"%'";
+            } else if(jComboBox4.getSelectedItem() != "Last Name") {
+                filters += " AND firstname LIKE '%"+txtName.getText()+"%'";
+            } else if(jComboBox4.getSelectedItem() != "Middle Name"){
+                filters += " AND firstname LIKE '%"+txtName.getText()+"%'";
+            }
+            
+            System.out.println(cboClasses.getSelectedItem().toString());
+            System.out.println(cboStreams.getSelectedItem().toString());
+            System.out.println(cboGender.getSelectedItem().toString());
+            System.out.println(txtAdmNo.getText());
+            System.out.println(txtName.getText());
+            
+            pstmt = con.prepareStatement("SELECT admissionNo, surname, firstname, lastname, "
+                    + "admissionType, studentStatus FROM StudentDetails WHERE 1=1" + filters);
+            
+            rs = pstmt.executeQuery();
+            
+            // Removing Previous Data
+            while (jTable1.getRowCount() > 0) {
+                ((DefaultTableModel) jTable1.getModel()).removeRow(0);
+            }
+
+            //Creating Object []rowData for jTable's Table Model        
+            int columns = rs.getMetaData().getColumnCount();
+            while (rs.next())
+            {  
+                Object[] row = new Object[columns];
+                for (int i = 1; i <= columns; i++)
+                {  
+                    row[i - 1] = rs.getObject(i); // 1
+                }
+                ((DefaultTableModel) jTable1.getModel()).insertRow(rs.getRow() - 1,row);
+            }
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(viewStudents.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public void loadStudents() {
+        dbConnection dc = new dbConnection();
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        Statement stmt = null;
+        
+        try {
+            Class.forName(dc.JDBC_DRIVER);
+            con = DriverManager.getConnection(dc.DATABASE_URL, dc.USERNAME, dc.PASSWORD);
+            
+            pstmt = con.prepareStatement("SELECT admissionNo, surname, firstname, lastname, "
+                    + "admissionType, studentStatus FROM StudentDetails WHERE 1=1");
+            
+            rs = pstmt.executeQuery();
+            
+            // Removing Previous Data
+            while (jTable1.getRowCount() > 0) {
+                ((DefaultTableModel) jTable1.getModel()).removeRow(0);
+            }
+
+            //Creating Object []rowData for jTable's Table Model        
+            int columns = rs.getMetaData().getColumnCount();
+            while (rs.next())
+            {  
+                Object[] row = new Object[columns];
+                for (int i = 1; i <= columns; i++)
+                {  
+                    row[i - 1] = rs.getObject(i); // 1
+                }
+                ((DefaultTableModel) jTable1.getModel()).insertRow(rs.getRow() - 1,row);
+            }
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(viewStudents.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    public void getForms() {
+        dbConnection dc = new dbConnection();
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        Statement stmt = null;
+        
+        //cboClasses.removeAllItems();
+        //cboClasses.addItem("Choose Class");
+        
+        try {
+            Class.forName(dc.JDBC_DRIVER);
+            con = DriverManager.getConnection(dc.DATABASE_URL, dc.USERNAME, dc.PASSWORD);
+            pstmt = con.prepareStatement("SELECT * FROM classes");
+            
+            rs = pstmt.executeQuery();
+            while (rs.next())
+            {  
+                cboClasses.addItem(rs.getString("className"));//streamName
+            }
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(studentRegistration.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public void getStreams() {
+        dbConnection dc = new dbConnection();
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        Statement stmt = null;
+        
+        //cboClasses.addItem("Choose Stream");
+        
+        try {
+            Class.forName(dc.JDBC_DRIVER);
+            con = DriverManager.getConnection(dc.DATABASE_URL, dc.USERNAME, dc.PASSWORD);
+            pstmt = con.prepareStatement("SELECT * FROM streams");
+            
+            rs = pstmt.executeQuery();
+            while (rs.next())
+            {  
+                cboStreams.addItem(rs.getString("streamName"));
+            }
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(studentRegistration.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cboClasses;
+    private javax.swing.JComboBox<String> cboGender;
+    private javax.swing.JComboBox<String> cboStreams;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -207,7 +516,7 @@ public class viewStudents extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField txtAdmNo;
+    private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
 }

@@ -23,7 +23,7 @@ public class dbConnection {
     public String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     public String DATABASE_URL = "jdbc:mysql://localhost/"+db_name;
     public String USERNAME = "root";
-    public String PASSWORD = "";
+    public String PASSWORD = "mtotooh";
     
     public void createDataBase() {
         Connection con = null;

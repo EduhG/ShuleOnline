@@ -5,12 +5,25 @@
  */
 package examManagement;
 
+import database.dbConnection;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author EduhG
  */
 public class merits extends javax.swing.JInternalFrame {
 
+    meritsManagement merits = new meritsManagement();
+    
     /**
      * Creates new form merits
      */
@@ -39,10 +52,26 @@ public class merits extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Cats and Merits");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
@@ -56,9 +85,7 @@ public class merits extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Merit Type");
 
-        jTextField1.setText("jTextField1");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Merit", "Merit 1", "Merit 2", "Merit 3", "Cat 1", "Cat 2", "Cat 3", "Divisional", "Mock" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -103,6 +130,11 @@ public class merits extends javax.swing.JInternalFrame {
         );
 
         jButton1.setText("SAVE");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("CANCEL");
 
@@ -114,12 +146,10 @@ public class merits extends javax.swing.JInternalFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Merit Name", "Merit Type", "End Term"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
-
-        jButton3.setText("DELETE");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -134,12 +164,9 @@ public class merits extends javax.swing.JInternalFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -153,19 +180,97 @@ public class merits extends javax.swing.JInternalFrame {
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        setDetails();
+        merits.addNewMerit(merits);
+        getMerits();
+        clearDetails();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        // TODO add your handling code here:
+        getMerits();
+    }//GEN-LAST:event_formInternalFrameOpened
+
+
+    public void setDetails() {
+        merits.setMeritName(jTextField1.getText());
+        merits.setMeritType(jComboBox1.getSelectedItem().toString());
+        if(jRadioButton1.isSelected()) {
+            merits.setUsedInEndTerm("Yes");
+        } else {
+            merits.setUsedInEndTerm("No");
+        }
+    }
+    
+    public void clearDetails() {
+        jTextField1.setText("");
+        jComboBox1.setSelectedItem("Choose Merit");
+        jRadioButton1.setSelected(true);
+        jRadioButton2.setSelected(false);
+    }
+    
+    public void getMerits() {
+        dbConnection dc = new dbConnection();
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        Statement stmt = null;
+        
+        try {
+            Class.forName(dc.JDBC_DRIVER);
+            con = DriverManager.getConnection(dc.DATABASE_URL, dc.USERNAME, dc.PASSWORD);
+            pstmt = con.prepareStatement("SELECT meritName, meritType, usedinEndTerm FROM merits");
+            
+            rs = pstmt.executeQuery();
+            
+            // Removing Previous Data
+            while (jTable1.getRowCount() > 0) {
+                ((DefaultTableModel) jTable1.getModel()).removeRow(0);
+            }
+
+            //Creating Object []rowData for jTable's Table Model        
+            int columns = rs.getMetaData().getColumnCount();
+            while (rs.next())
+            {  
+                Object[] row = new Object[columns];
+                for (int i = 1; i <= columns; i++)
+                {  
+                    row[i - 1] = rs.getObject(i); // 1
+                }
+                ((DefaultTableModel) jTable1.getModel()).insertRow(rs.getRow() - 1,row);
+            }
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(subjectsManagement.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

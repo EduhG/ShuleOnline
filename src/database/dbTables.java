@@ -90,6 +90,31 @@ public class dbTables {
         }
     }
     
+    public void merits() {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(dc.DATABASE_URL, dc.USERNAME, dc.PASSWORD);
+
+            String tableName = "merits";
+            
+            String table_query = "CREATE TABLE IF NOT EXISTS "
+                    + tableName + " ("
+                    + "meritId INTEGER ( 6 ) PRIMARY KEY AUTO_INCREMENT ,"
+                    + "meritName VARCHAR( 20 ) NULL ,"
+                    + "meritType VARCHAR( 20 ) NULL ,"
+                    + "usedinEndTerm VARCHAR( 5 ) NULL)";
+
+            Statement sta = connection.createStatement();
+            int count = sta.executeUpdate(table_query);
+
+            sta.close();
+            connection.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     public void systemUsersTables() {
         try {
             Connection connection;
@@ -161,5 +186,6 @@ public class dbTables {
         subjects();
         forms();
         streams();
+        merits();
     }
 }

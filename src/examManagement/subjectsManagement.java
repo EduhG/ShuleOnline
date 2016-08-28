@@ -21,7 +21,6 @@ import java.util.logging.Logger;
  */
 public class subjectsManagement {
     dbConnection dc = new dbConnection();
-//    subjectsManagement subject = new subjectsManagement();
     ResultSet rsmem;
     int rscount;
     

@@ -24,7 +24,7 @@ public class dbTables {
             String table_query = "CREATE TABLE IF NOT EXISTS "
                     + tableName + " ("
                     + "streamId INTEGER ( 6 ) PRIMARY KEY AUTO_INCREMENT ,"
-                    + "streamcode VARCHAR( 20 ) NULL ,"
+                    + "streamCode VARCHAR( 20 ) NULL ,"
                     + "streamName VARCHAR( 20 ) NULL)";
 
             Statement sta = connection.createStatement();

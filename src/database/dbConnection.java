@@ -21,7 +21,7 @@ public class dbConnection {
     public String db_name = "schoolmanagement_version1";
     
     public String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    public String DATABASE_URL = "jdbc:mysql://localhost/"+db_name;
+    public String DATABASE_URL = "jdbc:mysql://localhost/"+db_name+"?useSSL=false";
     public String USERNAME = "root";
     public String PASSWORD = "mtotooh";
     
@@ -31,8 +31,8 @@ public class dbConnection {
         
         try {
             Class.forName(JDBC_DRIVER);
-            con = DriverManager.getConnection("jdbc:mysql://localhost/", USERNAME, PASSWORD);
-            pstmt = con.prepareStatement("CREATE DATABASE " + db_name);
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/?useSSL=false", USERNAME, PASSWORD);
+            pstmt = con.prepareStatement("CREATE DATABASE IF NOT EXISTS " + db_name);
             
             pstmt.execute();
             

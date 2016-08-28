@@ -14,8 +14,7 @@ import java.sql.*;
 public class dbTables {
     static dbConnection dc = new dbConnection();
     
-    public void createTables() {
-        dc.createDataBase();
+    public void systemUsersTables() {
         try {
             Connection connection;
             connection = DriverManager.getConnection(dc.DATABASE_URL, dc.USERNAME, dc.PASSWORD);
@@ -40,5 +39,9 @@ public class dbTables {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public void createTables() {
+        dc.createDataBase();
+        systemUsersTables();
     }
 }

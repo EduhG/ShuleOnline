@@ -263,7 +263,7 @@ public class viewStudents extends javax.swing.JInternalFrame {
 
     private void cboGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboGenderActionPerformed
         // TODO add your handling code here:
-        //filterDetails();
+        filterDetails();
     }//GEN-LAST:event_cboGenderActionPerformed
 
     private void cboStreamsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboStreamsActionPerformed
@@ -297,27 +297,30 @@ public class viewStudents extends javax.swing.JInternalFrame {
             Class.forName(dc.JDBC_DRIVER);
             con = DriverManager.getConnection(dc.DATABASE_URL, dc.USERNAME, dc.PASSWORD);
             String filters = "";
+            String query = "";
+            query = "SELECT admissionNo, surname, firstname, lastname, "
+                    + "admissionType, studentStatus FROM StudentDetails WHERE 1=1";
             
             if (cboClasses.getSelectedItem().toString() != "Choose Class") {
-                filters += " AND form='"+cboClasses.getSelectedItem().toString()+"'";
+                query += " AND form = '"+cboClasses.getSelectedItem().toString()+"'";
             }
-            if (cboStreams.getSelectedItem().toString() != "Choose Class") {
-                filters += " AND form= '" + cboStreams.getSelectedItem().toString() + "'";
+            if (cboStreams.getSelectedItem().toString() != "Choose Stream") {
+                query += " AND stream = '" + cboStreams.getSelectedItem().toString() + "'";
             }
             if (cboGender.getSelectedItem().toString() != "Choose Gender") {
-                filters += " AND gender='"+cboGender.getSelectedItem().toString()+"'";
+                query += " AND gender='"+cboGender.getSelectedItem().toString()+"'";
             }
             
             if (txtAdmNo.getText().length() > 0) {
-                filters += " AND admissionNo LIKE '%"+txtAdmNo.getText()+"%'";
+                query += " AND admissionNo LIKE '%"+txtAdmNo.getText()+"%'";
             }
             
-            if (jComboBox4.getSelectedItem() != "First Name") {
-                filters += " AND firstname LIKE '%"+txtName.getText()+"%'";
-            } else if(jComboBox4.getSelectedItem() != "Last Name") {
-                filters += " AND firstname LIKE '%"+txtName.getText()+"%'";
-            } else if(jComboBox4.getSelectedItem() != "Middle Name"){
-                filters += " AND firstname LIKE '%"+txtName.getText()+"%'";
+            if (jComboBox4.getSelectedItem().equals("First Name")) {
+                query += " AND firstname LIKE '%"+txtName.getText()+"%'";
+            } else if(jComboBox4.getSelectedItem().equals("Last Name")) {
+                query += " AND lastname LIKE '%"+txtName.getText()+"%'";
+            } else if(jComboBox4.getSelectedItem().equals("Middle Name")){
+                query += " AND surname LIKE '%"+txtName.getText()+"%'";
             }
             
             System.out.println(cboClasses.getSelectedItem().toString());
@@ -326,8 +329,7 @@ public class viewStudents extends javax.swing.JInternalFrame {
             System.out.println(txtAdmNo.getText());
             System.out.println(txtName.getText());
             
-            pstmt = con.prepareStatement("SELECT admissionNo, surname, firstname, lastname, "
-                    + "admissionType, studentStatus FROM StudentDetails WHERE 1=1" + filters);
+            pstmt = con.prepareStatement(query);
             
             rs = pstmt.executeQuery();
             

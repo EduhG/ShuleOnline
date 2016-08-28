@@ -9,12 +9,12 @@ package examManagement;
  *
  * @author EduhG
  */
-public class generalSettings extends javax.swing.JInternalFrame {
+public class classes extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form generalSettings
+     * Creates new form classes
      */
-    public generalSettings() {
+    public classes() {
         initComponents();
     }
 

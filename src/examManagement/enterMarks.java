@@ -45,6 +45,7 @@ public class enterMarks extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
 
         setClosable(true);
+        setTitle("Exams Marks Entry");
 
         jLabel1.setText("Admision No");
 

@@ -35,7 +35,9 @@ public class ShuleSoft {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         dbTables.createTables();
-        new Login().setVisible(true);
+        Login login = new Login();
+        login.setLocationRelativeTo(null);
+        login.setVisible(true);
     }
     
 }

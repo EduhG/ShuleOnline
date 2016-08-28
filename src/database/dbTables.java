@@ -40,8 +40,47 @@ public class dbTables {
             e.printStackTrace();
         }
     }
+    
+    public void StudentDetails() {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(dc.DATABASE_URL, dc.USERNAME, dc.PASSWORD);
+
+            String tableName = "StudentDetails";
+            
+            String table_query = "CREATE TABLE IF NOT EXISTS "
+                + tableName + " ("
+                + "studentId INTEGER ( 6 ) PRIMARY KEY AUTO_INCREMENT ,"
+                + "admissionNo VARCHAR( 100 ) NOT NULL ,"
+                + "admissionDate VARCHAR( 200 ) NULL ,"
+                + "surname VARCHAR( 200 ) NULL ,"
+                + "firstname VARCHAR( 200 ) NULL ,"
+                + "lastname VARCHAR( 200 ) NULL ,"
+                + "gender VARCHAR( 200 ) NULL ,"
+                + "dateofbirth VARCHAR( 200 ) NULL ,"
+                + "birthcertno VARCHAR( 200 ) NULL ,"
+                + "age INTEGER( 2 ) NULL ,"
+                + "bloodgroup VARCHAR( 200 ) NULL ,"
+                + "form VARCHAR( 200 ) NULL ,"
+                + "stream VARCHAR( 200 ) NULL ,"
+                + "admissionType VARCHAR( 200 ) NULL ,"
+                + "studentStatus VARCHAR( 200 ) NULL)";
+
+            Statement sta = connection.createStatement();
+            int count = sta.executeUpdate(table_query);
+
+            sta.close();
+            connection.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     public void createTables() {
         dc.createDataBase();
+        
         systemUsersTables();
+        StudentDetails();
     }
 }

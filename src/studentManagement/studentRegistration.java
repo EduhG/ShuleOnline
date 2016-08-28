@@ -11,7 +11,8 @@ package studentManagement;
  */
 public class studentRegistration extends javax.swing.JInternalFrame {
 
-    static student student = new student();
+    student student = new student();
+    studentManagement studentManagement = new studentManagement();
     /**
      * Creates new form studentRegistration
      */
@@ -330,23 +331,25 @@ public class studentRegistration extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formInternalFrameOpened
 
     public void getDetails(){
-        txtAdmNo.setText(student.getAdmNo());
-        txtAdmDate.setText(student.getAdmDate());
-        txtMiddleName.setText(student.getMiddleName());
-        txtFirstname.setText(student.getFirstName());
-        txtLastName.setText(student.getLastName());
-        if(student.getGender().equals("Male")) {
+        studentManagement.StudentDetails();
+        
+        txtAdmNo.setText(studentManagement.admNo);
+        txtAdmDate.setText(studentManagement.admDate);
+        txtMiddleName.setText(studentManagement.middleName);
+        txtFirstname.setText(studentManagement.firstName);
+        txtLastName.setText(studentManagement.lastName);
+        if(studentManagement.gender.equals("Male")) {
             jRadioButton1.setSelected(true);
             jRadioButton2.setSelected(false);
         } else {
             jRadioButton2.setSelected(true);
             jRadioButton1.setSelected(false);
         }
-        txtDateOfBirth.setText(student.getDateOfBirth());
-        txtBirthCertNo.setText(student.getBirthCertNo());
-        cboStreams.setSelectedItem(student.getStream());
-        cboClasses.setSelectedItem(student.getForm());
-        if(student.getAdmType().equals("Boarder")) {
+        txtDateOfBirth.setText(studentManagement.dateOfBirth);
+        txtBirthCertNo.setText(studentManagement.birthCertNo);
+        cboStreams.setSelectedItem(studentManagement.stream);
+        cboClasses.setSelectedItem(studentManagement.form);
+        if(studentManagement.admType.equals("Boarder")) {
             jRadioButton3.setSelected(true);
             jRadioButton4.setSelected(false);
         } else {

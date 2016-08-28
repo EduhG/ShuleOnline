@@ -15,8 +15,21 @@ import java.util.logging.Logger;
  * @author EduhG
  */
 public class studentManagement {
+    
     dbConnection dc = new dbConnection();
     student student = new student();
+    public String admNo;
+    public String admDate;
+    public String firstName;
+    public String middleName;
+    public String lastName;
+    public String gender = "Male";
+    public String dateOfBirth;
+    public String birthCertNo;
+    public String form;
+    public String stream;
+    public String admType = "Boarder";
+    public static String status;
 
     ResultSet rsmem;
     int rscount;
@@ -67,7 +80,7 @@ public class studentManagement {
         }
     }
     
-    private void StudentDetails() {
+    public void StudentDetails() {
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -86,10 +99,11 @@ public class studentManagement {
             String sqlQuery = "SELECT * FROM StudentDetails";
             
             rsmem = stmt.executeQuery(sqlQuery);
-            rsmem.last();
-
-            Display();
-
+            
+            if (rsmem.last()) {
+                Display();
+            }
+            
         } catch (SQLException | ClassNotFoundException ex) {
             ex.printStackTrace();
         } finally {
@@ -110,6 +124,7 @@ public class studentManagement {
     }
     
     private void Display() {
+        //student student = new student();
         try {
             student.admission_number = Integer.toString(rscount);
             
@@ -124,9 +139,21 @@ public class studentManagement {
             student.setForm(rsmem.getString("form"));
             student.setStream(rsmem.getString("stream"));
             student.setAdmType(rsmem.getString("admissionType"));
+            
+            admNo = student.getAdmNo();
+            admDate = student.getAdmDate();
+            firstName = student.getFirstName();
+            middleName = student.getMiddleName();
+            lastName = student.getLastName();
+            gender = student.getGender();
+            dateOfBirth = student.getDateOfBirth();
+            birthCertNo = student.getBirthCertNo();
+            form = student.getForm();
+            stream = student.getStream();
+            admType = student.getAdmType();
 
         } catch (Exception e) {
-            System.err.println(e);
+            e.printStackTrace();
         }
     }
     

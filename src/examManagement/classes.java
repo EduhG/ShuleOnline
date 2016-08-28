@@ -318,7 +318,7 @@ public class classes extends javax.swing.JInternalFrame {
         jComboBox1.setSelectedItem("Choose Level");
     }
     
-    public void getStreams() {
+    public void getClasses() {
         dbConnection dc = new dbConnection();
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -368,7 +368,7 @@ public class classes extends javax.swing.JInternalFrame {
         }
     }
     
-    public void getClasses() {
+    public void getStreams() {
         dbConnection dc = new dbConnection();
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -383,7 +383,7 @@ public class classes extends javax.swing.JInternalFrame {
             rs = pstmt.executeQuery();
             
             // Removing Previous Data
-            while (jTable1.getRowCount() > 0) {
+            while (jTable2.getRowCount() > 0) {
                 ((DefaultTableModel) jTable2.getModel()).removeRow(0);
             }
 

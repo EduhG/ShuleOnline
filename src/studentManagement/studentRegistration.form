@@ -428,6 +428,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="New Student"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmdNewStudentActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="cmdCancel">
           <Properties>
@@ -438,6 +441,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Save Details"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmdSaveDetailsActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

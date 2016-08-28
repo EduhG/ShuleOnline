@@ -14,6 +14,82 @@ import java.sql.*;
 public class dbTables {
     static dbConnection dc = new dbConnection();
     
+    public void streams() {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(dc.DATABASE_URL, dc.USERNAME, dc.PASSWORD);
+
+            String tableName = "streams";
+            
+            String table_query = "CREATE TABLE IF NOT EXISTS "
+                    + tableName + " ("
+                    + "streamId INTEGER ( 6 ) PRIMARY KEY AUTO_INCREMENT ,"
+                    + "streamcode VARCHAR( 20 ) NULL ,"
+                    + "streamName VARCHAR( 20 ) NULL)";
+
+            Statement sta = connection.createStatement();
+            int count = sta.executeUpdate(table_query);
+
+            sta.close();
+            connection.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void subjects() {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(dc.DATABASE_URL, dc.USERNAME, dc.PASSWORD);
+
+            String tableName = "subjects";
+            
+            String table_query = "CREATE TABLE IF NOT EXISTS "
+                    + tableName + " ("
+                    + "subjectId INTEGER ( 6 ) PRIMARY KEY AUTO_INCREMENT ,"
+                    + "subjectCode VARCHAR( 5 ) NULL ,"
+                    + "subjectName VARCHAR( 20 ) NULL ,"
+                    + "cartegory VARCHAR( 200 ) NULL ,"
+                    + "subcartegory VARCHAR( 200 ) NULL ,"
+                    + "totalMarks INTEGER ( 2 ) NULL)";
+
+            Statement sta = connection.createStatement();
+            int count = sta.executeUpdate(table_query);
+
+            sta.close();
+            connection.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void forms() {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(dc.DATABASE_URL, dc.USERNAME, dc.PASSWORD);
+
+            String tableName = "classes";
+            
+            String table_query = "CREATE TABLE IF NOT EXISTS "
+                    + tableName + " ("
+                    + "classId INTEGER ( 6 ) PRIMARY KEY AUTO_INCREMENT ,"
+                    + "classCode VARCHAR( 20 ) NULL ,"
+                    + "className VARCHAR( 20 ) NULL ,"
+                    + "level VARCHAR( 200 ) NULL)";
+
+            Statement sta = connection.createStatement();
+            int count = sta.executeUpdate(table_query);
+
+            sta.close();
+            connection.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     public void systemUsersTables() {
         try {
             Connection connection;

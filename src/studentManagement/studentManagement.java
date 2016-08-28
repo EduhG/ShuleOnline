@@ -36,7 +36,6 @@ public class studentManagement {
     String admission_number = "0";
     
     public void addNewStudentDetails(student student) {
-        
         Connection con = null;
         PreparedStatement pstmt = null;
         
@@ -179,5 +178,7 @@ public class studentManagement {
         if (no == 4) {
             student.setAdmNo("RA:"+admission_number);
         }
+        
+        admNo = student.getAdmNo();
     }
 }

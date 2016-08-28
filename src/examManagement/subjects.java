@@ -53,7 +53,7 @@ public class subjects extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Cartegory");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Category", "Languages", "Mathematics", "Sciences", "Humanities" }));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -70,7 +70,7 @@ public class subjects extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Sub Category");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Sub-Category", "English", "Kiswahili", "Social Studies" }));
 
         jLabel5.setText("Total Marks");
 

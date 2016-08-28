@@ -259,10 +259,20 @@ public class studentRegistration extends javax.swing.JInternalFrame {
         cmdClearDetails.setText("Clear Details");
 
         cmdNewStudent.setText("New Student");
+        cmdNewStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdNewStudentActionPerformed(evt);
+            }
+        });
 
         cmdCancel.setText("Cancel");
 
         cmdSaveDetails.setText("Save Details");
+        cmdSaveDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdSaveDetailsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -330,6 +340,19 @@ public class studentRegistration extends javax.swing.JInternalFrame {
         getDetails();
     }//GEN-LAST:event_formInternalFrameOpened
 
+    private void cmdSaveDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSaveDetailsActionPerformed
+        // TODO add your handling code here:
+        setDetails();
+    }//GEN-LAST:event_cmdSaveDetailsActionPerformed
+
+    private void cmdNewStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdNewStudentActionPerformed
+        // TODO add your handling code here:
+        clearDetails();
+        
+        studentManagement.NewAdmissionNumber();
+        txtAdmNo.setText(studentManagement.admNo);
+    }//GEN-LAST:event_cmdNewStudentActionPerformed
+
     public void getDetails(){
         studentManagement.StudentDetails();
         
@@ -380,8 +403,26 @@ public class studentRegistration extends javax.swing.JInternalFrame {
         } else {
             student.setAdmType("Day Scholar");
         }
+        student.setStatus("Present");
         
     }
+    
+    public void clearDetails() {
+        txtAdmNo.setText("");
+        txtAdmDate.setText("");
+        txtMiddleName.setText("");
+        txtFirstname.setText("");
+        txtLastName.setText("");
+        jRadioButton1.setSelected(true);
+        jRadioButton2.setSelected(false);
+        txtDateOfBirth.setText("");
+        txtBirthCertNo.setText("");
+        cboStreams.setSelectedItem("Choose Form");
+        cboClasses.setSelectedItem("Choose Stream");
+        jRadioButton3.setSelected(true);
+        jRadioButton4.setSelected(false);
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cboClasses;

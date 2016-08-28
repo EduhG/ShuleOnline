@@ -5,6 +5,8 @@
  */
 package shulesoft;
 
+import database.dbConnection;
+
 /**
  *
  * @author eduhg
@@ -14,8 +16,11 @@ public class ShuleSoft {
     /**
      * @param args the command line arguments
      */
+    static dbConnection dc = new dbConnection();
+    
     public static void main(String[] args) {
         // TODO code application logic here
+        dc.createDataBase();
     }
     
 }

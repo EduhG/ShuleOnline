@@ -35,7 +35,7 @@ public class studentManagement {
     int rscount;
     String admission_number = "0";
     
-    public void addNewStudentDetails(student student) {
+    public boolean addNewStudentDetails(student student) {
         Connection con = null;
         PreparedStatement pstmt = null;
         
@@ -62,6 +62,8 @@ public class studentManagement {
             pstmt.setString(13, student.getStatus());
 
             pstmt.execute();
+            
+            return true;
 
         } catch (SQLException | ClassNotFoundException ex) {
             ex.printStackTrace();
@@ -77,6 +79,8 @@ public class studentManagement {
                 Logger.getLogger(studentManagement.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        
+        return false;
     }
     
     public void StudentDetails() {

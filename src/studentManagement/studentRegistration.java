@@ -5,6 +5,17 @@
  */
 package studentManagement;
 
+import database.dbConnection;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author eduhg
@@ -208,9 +219,9 @@ public class studentRegistration extends javax.swing.JInternalFrame {
 
         jLabel11.setText("Adm. Type");
 
-        cboClasses.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboClasses.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Class" }));
 
-        cboStreams.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboStreams.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Stream" }));
 
         jRadioButton3.setText("Boarder");
 
@@ -337,12 +348,20 @@ public class studentRegistration extends javax.swing.JInternalFrame {
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         // TODO add your handling code here:
+        getForms();
+        getStreams();
         getDetails();
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void cmdSaveDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSaveDetailsActionPerformed
         // TODO add your handling code here:
         setDetails();
+        if (studentManagement.addNewStudentDetails(student)) {
+            JOptionPane.showMessageDialog(rootPane, "Record Saved Successfully");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Record Not Saved. \nPlease contact the system admin");
+        }
+        clearDetails();
     }//GEN-LAST:event_cmdSaveDetailsActionPerformed
 
     private void cmdNewStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdNewStudentActionPerformed
@@ -417,10 +436,89 @@ public class studentRegistration extends javax.swing.JInternalFrame {
         jRadioButton2.setSelected(false);
         txtDateOfBirth.setText("");
         txtBirthCertNo.setText("");
-        cboStreams.setSelectedItem("Choose Form");
+        cboStreams.setSelectedItem("Choose Class");
         cboClasses.setSelectedItem("Choose Stream");
         jRadioButton3.setSelected(true);
         jRadioButton4.setSelected(false);
+    }
+    
+    public void getForms() {
+        dbConnection dc = new dbConnection();
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        Statement stmt = null;
+        
+        //cboClasses.removeAllItems();
+        //cboClasses.addItem("Choose Class");
+        
+        try {
+            Class.forName(dc.JDBC_DRIVER);
+            con = DriverManager.getConnection(dc.DATABASE_URL, dc.USERNAME, dc.PASSWORD);
+            pstmt = con.prepareStatement("SELECT * FROM classes");
+            
+            rs = pstmt.executeQuery();
+            while (rs.next())
+            {  
+                cboClasses.addItem(rs.getString("className"));//streamName
+            }
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(studentRegistration.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public void getStreams() {
+        dbConnection dc = new dbConnection();
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        Statement stmt = null;
+        
+        //cboClasses.addItem("Choose Stream");
+        
+        try {
+            Class.forName(dc.JDBC_DRIVER);
+            con = DriverManager.getConnection(dc.DATABASE_URL, dc.USERNAME, dc.PASSWORD);
+            pstmt = con.prepareStatement("SELECT * FROM streams");
+            
+            rs = pstmt.executeQuery();
+            while (rs.next())
+            {  
+                cboStreams.addItem(rs.getString("streamName"));
+            }
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(studentRegistration.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
 

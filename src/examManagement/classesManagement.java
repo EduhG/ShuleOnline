@@ -97,7 +97,7 @@ public class classesManagement {
                     con.close();
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(subjectsManagement.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(classesManagement.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -128,7 +128,7 @@ public class classesManagement {
                     con.close();
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(subjectsManagement.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(classesManagement.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

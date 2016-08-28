@@ -159,5 +159,7 @@ public class dbTables {
         systemUsersTables();
         StudentDetails();
         subjects();
+        forms();
+        streams();
     }
 }

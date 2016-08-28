@@ -9,12 +9,12 @@ package studentManagement;
  *
  * @author eduhg
  */
-public class studentRegistration extends javax.swing.JInternalFrame {
+public class editStudentDetails extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form studentRegistration
      */
-    public studentRegistration() {
+    public editStudentDetails() {
         initComponents();
     }
 

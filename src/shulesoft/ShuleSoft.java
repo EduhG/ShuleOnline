@@ -34,7 +34,9 @@ public class ShuleSoft {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        
         dbTables.createTables();
+        
         Login login = new Login();
         login.setLocationRelativeTo(null);
         login.setVisible(true);

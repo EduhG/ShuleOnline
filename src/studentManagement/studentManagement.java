@@ -22,6 +22,51 @@ public class studentManagement {
     int rscount;
     String admission_number = "0";
     
+    public void addNewStudentDetails(student student) {
+        
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        
+        try {
+            Class.forName(dc.JDBC_DRIVER);
+            con = DriverManager.getConnection(dc.DATABASE_URL, dc.USERNAME, dc.PASSWORD);
+            pstmt = con.prepareStatement("INSERT INTO StudentDetails(studentId, admissionNo, admissionDate, "
+                    + "surname, firstname, lastname, gender, dateofbirth, birthcertno, "
+                    + "form, stream, admissionType, studentStatus) "
+                    + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+            pstmt.setInt(1, student.getStudentId());
+            pstmt.setString(2, student.getAdmNo());
+            pstmt.setString(3, student.getAdmDate());
+            pstmt.setString(4, student.getMiddleName());
+            pstmt.setString(5, student.getFirstName());
+            pstmt.setString(6, student.getLastName());
+            pstmt.setString(7, student.getGender());
+            pstmt.setString(8, student.getDateOfBirth());
+            pstmt.setString(9, student.getBirthCertNo());
+            pstmt.setString(10, student.getForm());
+            pstmt.setString(11, student.getStream());
+            pstmt.setString(12, student.getAdmType());
+            pstmt.setString(13, student.getStatus());
+
+            pstmt.execute();
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(studentManagement.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
     private void StudentDetails() {
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -77,7 +122,7 @@ public class studentManagement {
             student.setDateOfBirth(rsmem.getString("dateofbirth"));
             student.setBirthCertNo(rsmem.getString("birthcertno"));
             student.setForm(rsmem.getString("form"));
-            student.setForm(rsmem.getString("stream"));
+            student.setStream(rsmem.getString("stream"));
             student.setAdmType(rsmem.getString("admissionType"));
 
         } catch (Exception e) {

@@ -10,6 +10,9 @@ package studentManagement;
  * @author EduhG
  */
 public class student {
+    public static String admission_number;
+    
+    private static int studentId;
     private String admNo;
     private String admDate;
     private String firstName;
@@ -21,7 +24,17 @@ public class student {
     private String form;
     private String stream;
     private String admType;
+    private static String status;
 
+    
+    public void setStudentId(int t) {
+        studentId = t;
+    }
+    
+    public int getStudentId() {
+        return studentId;
+    }
+    
     public String getAdmNo() {
         return admNo;
     }
@@ -110,5 +123,11 @@ public class student {
         this.admType = admType;
     }
     
+    public void setStatus(String t) {
+        status = t;
+    }
     
+    public String getStatus() {
+        return status;
+    }
 }

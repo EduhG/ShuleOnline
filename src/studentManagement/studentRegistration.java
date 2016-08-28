@@ -11,10 +11,12 @@ package studentManagement;
  */
 public class studentRegistration extends javax.swing.JInternalFrame {
 
+    static student student = new student();
     /**
      * Creates new form studentRegistration
      */
     public studentRegistration() {
+        
         initComponents();
     }
 
@@ -324,9 +326,59 @@ public class studentRegistration extends javax.swing.JInternalFrame {
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         // TODO add your handling code here:
-        
+        getDetails();
     }//GEN-LAST:event_formInternalFrameOpened
 
+    public void getDetails(){
+        txtAdmNo.setText(student.getAdmNo());
+        txtAdmDate.setText(student.getAdmDate());
+        txtMiddleName.setText(student.getMiddleName());
+        txtFirstname.setText(student.getFirstName());
+        txtLastName.setText(student.getLastName());
+        if(student.getGender().equals("Male")) {
+            jRadioButton1.setSelected(true);
+            jRadioButton2.setSelected(false);
+        } else {
+            jRadioButton2.setSelected(true);
+            jRadioButton1.setSelected(false);
+        }
+        txtDateOfBirth.setText(student.getDateOfBirth());
+        txtBirthCertNo.setText(student.getBirthCertNo());
+        cboStreams.setSelectedItem(student.getStream());
+        cboClasses.setSelectedItem(student.getForm());
+        if(student.getAdmType().equals("Boarder")) {
+            jRadioButton3.setSelected(true);
+            jRadioButton4.setSelected(false);
+        } else {
+            jRadioButton4.setSelected(true);
+            jRadioButton3.setSelected(false);
+        }
+        //txtAdmNo.setText(student.getStatus());
+        //txtAdmNo.setText(student.getAdmNo());
+    }
+    
+    public void setDetails(){
+        student.setAdmNo(txtAdmNo.getText());
+        student.setAdmDate(txtAdmDate.getText());
+        student.setMiddleName(txtMiddleName.getText());
+        student.setFirstName(txtFirstname.getText());
+        student.setLastName(txtLastName.getText());
+        if(jRadioButton1.isSelected()) {
+            student.setGender("Male");
+        } else {
+            student.setGender("Female");
+        }
+        student.setDateOfBirth(txtDateOfBirth.getText());
+        student.setBirthCertNo(txtBirthCertNo.getText());
+        student.setForm(cboClasses.getSelectedItem().toString());
+        student.setStream(cboStreams.getSelectedItem().toString());
+        if(jRadioButton3.isSelected()) {
+            student.setAdmType("Boarder");
+        } else {
+            student.setAdmType("Day Scholar");
+        }
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cboClasses;

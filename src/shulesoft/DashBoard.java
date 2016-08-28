@@ -308,6 +308,7 @@ public class DashBoard extends javax.swing.JFrame {
 
     private void cmdStudentRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdStudentRegActionPerformed
         // TODO add your handling code here:
+        
         studentRegistration studentRegistration = new studentRegistration();
         formsContainer.add(studentRegistration);
         int width = (formsContainer.getWidth() - studentRegistration.getWidth()) / 2;
@@ -390,10 +391,13 @@ public class DashBoard extends javax.swing.JFrame {
         // TODO add your handling code here:
         reportCards reportCards = new reportCards();
         formsContainer.add(reportCards);
+        
         int width = (formsContainer.getWidth() - reportCards.getWidth()) / 2;
         int height = (formsContainer.getHeight() - reportCards.getHeight()) / 2;
         reportCards.setLocation(width, height);
         reportCards.show();
+        
+
     }//GEN-LAST:event_cmdReportCardsActionPerformed
 
     private void cmdClassesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdClassesActionPerformed

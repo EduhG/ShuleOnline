@@ -6,6 +6,7 @@
 package studentManagement;
 
 import database.dbConnection;
+import java.beans.PropertyVetoException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -268,6 +269,11 @@ public class studentRegistration extends javax.swing.JInternalFrame {
         );
 
         cmdClearDetails.setText("Clear Details");
+        cmdClearDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdClearDetailsActionPerformed(evt);
+            }
+        });
 
         cmdNewStudent.setText("New Student");
         cmdNewStudent.addActionListener(new java.awt.event.ActionListener() {
@@ -277,6 +283,11 @@ public class studentRegistration extends javax.swing.JInternalFrame {
         });
 
         cmdCancel.setText("Cancel");
+        cmdCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdCancelActionPerformed(evt);
+            }
+        });
 
         cmdSaveDetails.setText("Save Details");
         cmdSaveDetails.addActionListener(new java.awt.event.ActionListener() {
@@ -362,6 +373,9 @@ public class studentRegistration extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(rootPane, "Record Not Saved. \nPlease contact the system admin");
         }
         clearDetails();
+        
+        studentManagement.NewAdmissionNumber();
+        txtAdmNo.setText(studentManagement.admNo);
     }//GEN-LAST:event_cmdSaveDetailsActionPerformed
 
     private void cmdNewStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdNewStudentActionPerformed
@@ -370,7 +384,24 @@ public class studentRegistration extends javax.swing.JInternalFrame {
         
         studentManagement.NewAdmissionNumber();
         txtAdmNo.setText(studentManagement.admNo);
+        
+        
     }//GEN-LAST:event_cmdNewStudentActionPerformed
+
+    private void cmdClearDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdClearDetailsActionPerformed
+        // TODO add your handling code here:
+        clearDetails();
+    }//GEN-LAST:event_cmdClearDetailsActionPerformed
+
+    private void cmdCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCancelActionPerformed
+        // TODO add your handling code here:
+        clearDetails();
+        try {
+            this.setClosed(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(studentRegistration.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_cmdCancelActionPerformed
 
     public void getDetails(){
         studentManagement.StudentDetails();

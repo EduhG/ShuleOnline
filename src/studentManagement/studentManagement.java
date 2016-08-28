@@ -29,7 +29,7 @@ public class studentManagement {
     public String form;
     public String stream;
     public String admType = "Boarder";
-    public static String status;
+    public String status;
 
     ResultSet rsmem;
     int rscount;
@@ -60,6 +60,113 @@ public class studentManagement {
             pstmt.setString(11, student.getStream());
             pstmt.setString(12, student.getAdmType());
             pstmt.setString(13, student.getStatus());
+
+            pstmt.execute();
+            
+            return true;
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(studentManagement.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        return false;
+    }
+    
+    public void getStudents(String admNo) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        Statement stmt = null;
+        
+        try {
+            Class.forName(dc.JDBC_DRIVER);
+            con = DriverManager.getConnection(dc.DATABASE_URL, dc.USERNAME, dc.PASSWORD);
+            pstmt = con.prepareStatement("SELECT * FROM StudentDetails WHERE admissionNo = ?");
+            pstmt.setString(1, admNo);
+            
+            rs = pstmt.executeQuery();
+            
+            while (rs.next())
+            {  
+                student.setAdmNo(rs.getString("admissionNo"));
+                student.setAdmDate(rs.getString("admissionDate"));
+                student.setMiddleName(rs.getString("surname"));
+                student.setFirstName(rs.getString("firstname"));
+                student.setLastName(rs.getString("lastname"));
+                student.setGender(rs.getString("gender"));
+                student.setDateOfBirth(rs.getString("dateofbirth"));
+                student.setBirthCertNo(rs.getString("birthcertno"));
+                student.setForm(rs.getString("form"));
+                student.setStream(rs.getString("stream"));
+                student.setAdmType(rs.getString("admissionType"));
+
+                admNo = student.getAdmNo();
+                admDate = student.getAdmDate();
+                firstName = student.getFirstName();
+                middleName = student.getMiddleName();
+                lastName = student.getLastName();
+                gender = student.getGender();
+                dateOfBirth = student.getDateOfBirth();
+                birthCertNo = student.getBirthCertNo();
+                form = student.getForm();
+                stream = student.getStream();
+                admType = student.getAdmType();
+            }
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(studentManagement.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public boolean updateStudentDetails(String admNo) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+                
+        try {
+            Class.forName(dc.JDBC_DRIVER);
+            con = DriverManager.getConnection(dc.DATABASE_URL, dc.USERNAME, dc.PASSWORD);
+            pstmt = con.prepareStatement("UPDATE StudentDetails SET admissionNo=?, admissionDate=?, "
+                    + "surname=?, firstname=?, lastname=?, gender=?, dateofbirth=?, birthcertno=?, "
+                    + "form=?, stream=?, admissionType=?, studentStatus=? WHERE admissionNo = ?");
+            
+            pstmt.setString(1, admNo);
+            pstmt.setString(2, admDate);
+            pstmt.setString(3, middleName);
+            pstmt.setString(4, firstName);
+            pstmt.setString(5, lastName);
+            pstmt.setString(6, gender);
+            pstmt.setString(7, dateOfBirth);
+            pstmt.setString(8, birthCertNo);
+            pstmt.setString(9, form);
+            pstmt.setString(10, stream);
+            pstmt.setString(11, admType);
+            pstmt.setString(12, status);
+            pstmt.setString(13, admNo);
 
             pstmt.execute();
             

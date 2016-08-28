@@ -5,12 +5,15 @@
  */
 package shulesoft;
 
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+
 /**
  *
  * @author EduhG
  */
 public class Login extends javax.swing.JFrame {
-
+    users users = new users();
     /**
      * Creates new form Login
      */
@@ -73,6 +76,11 @@ public class Login extends javax.swing.JFrame {
         );
 
         cmdLogin.setText("LOGIN");
+        cmdLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdLoginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,6 +108,16 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cmdLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLoginActionPerformed
+        // TODO add your handling code here:
+        if (users.Login(txtUsername.getText(), txtPassword.getText())) {
+            this.setVisible(false);
+            new DashBoard().setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Password and username do not match");
+        }
+    }//GEN-LAST:event_cmdLoginActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -110,12 +128,9 @@ public class Login extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
+            // Set System L&F
+            UIManager.setLookAndFeel(
+                    UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {

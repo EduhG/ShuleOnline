@@ -27,8 +27,8 @@ public class users {
             Class.forName(dc.JDBC_DRIVER);
             con = DriverManager.getConnection(dc.DATABASE_URL, dc.USERNAME, dc.PASSWORD);
             pstmt = con.prepareStatement("SELECT * FROM systemUsers WHERE username = ? AND password = ?");
-            pstmt.setString(0, password);
-            pstmt.setString(0, password);
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
             
             rs = pstmt.executeQuery();
             

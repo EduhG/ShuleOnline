@@ -34,23 +34,23 @@ public class DashBoard extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        studentManagementPanel = new javax.swing.JPanel();
+        cmdStudentReg = new javax.swing.JButton();
+        cmdEditStudent = new javax.swing.JButton();
+        cmdViewStudents = new javax.swing.JButton();
+        cmdStudentManagement = new javax.swing.JButton();
+        cmdExamsManagement = new javax.swing.JButton();
+        examsManagementPanel = new javax.swing.JPanel();
+        cmdEnterMarks = new javax.swing.JButton();
+        cmdMerits = new javax.swing.JButton();
+        cmdSubjects = new javax.swing.JButton();
+        cmdPromotions = new javax.swing.JButton();
+        cmdReportCards = new javax.swing.JButton();
+        cmdClasses = new javax.swing.JButton();
+        formsContainer = new javax.swing.JDesktopPane();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        jButton7 = new javax.swing.JButton();
+        cmdLogout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Shule Soft");
@@ -60,134 +60,134 @@ public class DashBoard extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("NEW STUDENT REGISTRATION");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        cmdStudentReg.setText("NEW STUDENT REGISTRATION");
+        cmdStudentReg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                cmdStudentRegActionPerformed(evt);
             }
         });
 
-        jButton4.setText("EDIT STUDENT DETAILS");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        cmdEditStudent.setText("EDIT STUDENT DETAILS");
+        cmdEditStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                cmdEditStudentActionPerformed(evt);
             }
         });
 
-        jButton5.setText("VIEW REGISTERED STUDENTS");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        cmdViewStudents.setText("VIEW REGISTERED STUDENTS");
+        cmdViewStudents.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                cmdViewStudentsActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout studentManagementPanelLayout = new javax.swing.GroupLayout(studentManagementPanel);
+        studentManagementPanel.setLayout(studentManagementPanelLayout);
+        studentManagementPanelLayout.setHorizontalGroup(
+            studentManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(studentManagementPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(studentManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cmdStudentReg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cmdEditStudent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cmdViewStudents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+        studentManagementPanelLayout.setVerticalGroup(
+            studentManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(studentManagementPanelLayout.createSequentialGroup()
+                .addComponent(cmdStudentReg, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmdEditStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(cmdViewStudents, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jButton2.setText("STUDENT MANAGEMENT");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        cmdStudentManagement.setText("STUDENT MANAGEMENT");
+        cmdStudentManagement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                cmdStudentManagementActionPerformed(evt);
             }
         });
 
-        jButton6.setText("EXAMS MANAGEMENT");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        cmdExamsManagement.setText("EXAMS MANAGEMENT");
+        cmdExamsManagement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                cmdExamsManagementActionPerformed(evt);
             }
         });
 
-        jButton1.setText("ENTER MARKS");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        cmdEnterMarks.setText("ENTER MARKS");
+        cmdEnterMarks.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                cmdEnterMarksActionPerformed(evt);
             }
         });
 
-        jButton8.setText("CATS/MERITS");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        cmdMerits.setText("CATS/MERITS");
+        cmdMerits.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                cmdMeritsActionPerformed(evt);
             }
         });
 
-        jButton9.setText("SUBJECTS");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        cmdSubjects.setText("SUBJECTS");
+        cmdSubjects.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                cmdSubjectsActionPerformed(evt);
             }
         });
 
-        jButton10.setText("CLASS PROMOTIONS");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        cmdPromotions.setText("CLASS PROMOTIONS");
+        cmdPromotions.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                cmdPromotionsActionPerformed(evt);
             }
         });
 
-        jButton11.setText("GENERATE REPORT CARDS");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
+        cmdReportCards.setText("GENERATE REPORT CARDS");
+        cmdReportCards.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
+                cmdReportCardsActionPerformed(evt);
             }
         });
 
-        jButton12.setText("CLASSES AND STREAMS");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
+        cmdClasses.setText("CLASSES AND STREAMS");
+        cmdClasses.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
+                cmdClassesActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout examsManagementPanelLayout = new javax.swing.GroupLayout(examsManagementPanel);
+        examsManagementPanel.setLayout(examsManagementPanelLayout);
+        examsManagementPanelLayout.setHorizontalGroup(
+            examsManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(examsManagementPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(examsManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cmdEnterMarks, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cmdMerits, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cmdSubjects, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cmdPromotions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cmdReportCards, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cmdClasses, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+        examsManagementPanelLayout.setVerticalGroup(
+            examsManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(examsManagementPanelLayout.createSequentialGroup()
+                .addComponent(cmdEnterMarks, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmdMerits, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmdSubjects, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmdClasses, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmdPromotions, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmdReportCards, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -198,36 +198,36 @@ public class DashBoard extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cmdStudentManagement, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                    .addComponent(cmdExamsManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(examsManagementPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(studentManagementPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmdStudentManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(studentManagementPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmdExamsManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(examsManagementPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 117, Short.MAX_VALUE))
         );
 
-        jDesktopPane1.setBackground(new java.awt.Color(204, 255, 255));
-        jDesktopPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        formsContainer.setBackground(new java.awt.Color(204, 255, 255));
+        formsContainer.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout formsContainerLayout = new javax.swing.GroupLayout(formsContainer);
+        formsContainer.setLayout(formsContainerLayout);
+        formsContainerLayout.setHorizontalGroup(
+            formsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 438, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        formsContainerLayout.setVerticalGroup(
+            formsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
@@ -242,7 +242,7 @@ public class DashBoard extends javax.swing.JFrame {
             .addGap(0, 35, Short.MAX_VALUE)
         );
 
-        jButton7.setText("LOGOUT");
+        cmdLogout.setText("LOGOUT");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -250,14 +250,14 @@ public class DashBoard extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton7)
+                .addComponent(cmdLogout)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmdLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -269,7 +269,7 @@ public class DashBoard extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDesktopPane1)
+                    .addComponent(formsContainer)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -281,7 +281,7 @@ public class DashBoard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jDesktopPane1)
+                        .addComponent(formsContainer)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -292,119 +292,119 @@ public class DashBoard extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        jPanel2.setVisible(false);
-        jPanel3.setVisible(false);
+        studentManagementPanel.setVisible(false);
+        examsManagementPanel.setVisible(false);
     }//GEN-LAST:event_formWindowOpened
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void cmdStudentManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdStudentManagementActionPerformed
         // TODO add your handling code here:
-        if (jPanel2.isVisible()) {
-            jPanel2.setVisible(false);
+        if (studentManagementPanel.isVisible()) {
+            studentManagementPanel.setVisible(false);
         } else {
-            jPanel2.setVisible(true);
-            jPanel3.setVisible(false);
+            studentManagementPanel.setVisible(true);
+            examsManagementPanel.setVisible(false);
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_cmdStudentManagementActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void cmdStudentRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdStudentRegActionPerformed
         // TODO add your handling code here:
         studentRegistration studentRegistration = new studentRegistration();
-        jDesktopPane1.add(studentRegistration);
-        int width = (jDesktopPane1.getWidth() - studentRegistration.getWidth()) / 2;
-        int height = (jDesktopPane1.getHeight() - studentRegistration.getHeight()) / 2;
+        formsContainer.add(studentRegistration);
+        int width = (formsContainer.getWidth() - studentRegistration.getWidth()) / 2;
+        int height = (formsContainer.getHeight() - studentRegistration.getHeight()) / 2;
         studentRegistration.setLocation(width, height);
         studentRegistration.show();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_cmdStudentRegActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void cmdEditStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdEditStudentActionPerformed
         // TODO add your handling code here:
         editStudentDetails editStudentDetails = new editStudentDetails();
-        jDesktopPane1.add(editStudentDetails);
-        int width = (jDesktopPane1.getWidth() - editStudentDetails.getWidth()) / 2;
-        int height = (jDesktopPane1.getHeight() - editStudentDetails.getHeight()) / 2;
+        formsContainer.add(editStudentDetails);
+        int width = (formsContainer.getWidth() - editStudentDetails.getWidth()) / 2;
+        int height = (formsContainer.getHeight() - editStudentDetails.getHeight()) / 2;
         editStudentDetails.setLocation(width, height);
         editStudentDetails.show();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_cmdEditStudentActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void cmdViewStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdViewStudentsActionPerformed
         // TODO add your handling code here:
         viewStudents viewStudents = new viewStudents();
-        jDesktopPane1.add(viewStudents);
-        int width = (jDesktopPane1.getWidth() - viewStudents.getWidth()) / 2;
-        int height = (jDesktopPane1.getHeight() - viewStudents.getHeight()) / 2;
+        formsContainer.add(viewStudents);
+        int width = (formsContainer.getWidth() - viewStudents.getWidth()) / 2;
+        int height = (formsContainer.getHeight() - viewStudents.getHeight()) / 2;
         viewStudents.setLocation(width, height);
         viewStudents.show();
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_cmdViewStudentsActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void cmdExamsManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdExamsManagementActionPerformed
         // TODO add your handling code here:
-        if (jPanel3.isVisible()) {
-            jPanel3.setVisible(false);
+        if (examsManagementPanel.isVisible()) {
+            examsManagementPanel.setVisible(false);
         } else {
-            jPanel3.setVisible(true);
-            jPanel2.setVisible(false);
+            examsManagementPanel.setVisible(true);
+            studentManagementPanel.setVisible(false);
         }
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_cmdExamsManagementActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void cmdEnterMarksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdEnterMarksActionPerformed
         // TODO add your handling code here:
         enterMarks enterMarks = new enterMarks();
-        jDesktopPane1.add(enterMarks);
-        int width = (jDesktopPane1.getWidth() - enterMarks.getWidth()) / 2;
-        int height = (jDesktopPane1.getHeight() - enterMarks.getHeight()) / 2;
+        formsContainer.add(enterMarks);
+        int width = (formsContainer.getWidth() - enterMarks.getWidth()) / 2;
+        int height = (formsContainer.getHeight() - enterMarks.getHeight()) / 2;
         enterMarks.setLocation(width, height);
         enterMarks.show();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_cmdEnterMarksActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void cmdMeritsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMeritsActionPerformed
         // TODO add your handling code here:
         merits merits = new merits();
-        jDesktopPane1.add(merits);
-        int width = (jDesktopPane1.getWidth() - merits.getWidth()) / 2;
-        int height = (jDesktopPane1.getHeight() - merits.getHeight()) / 2;
+        formsContainer.add(merits);
+        int width = (formsContainer.getWidth() - merits.getWidth()) / 2;
+        int height = (formsContainer.getHeight() - merits.getHeight()) / 2;
         merits.setLocation(width, height);
         merits.show();
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_cmdMeritsActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void cmdSubjectsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSubjectsActionPerformed
         // TODO add your handling code here:
         subjects subjects = new subjects();
-        jDesktopPane1.add(subjects);
-        int width = (jDesktopPane1.getWidth() - subjects.getWidth()) / 2;
-        int height = (jDesktopPane1.getHeight() - subjects.getHeight()) / 2;
+        formsContainer.add(subjects);
+        int width = (formsContainer.getWidth() - subjects.getWidth()) / 2;
+        int height = (formsContainer.getHeight() - subjects.getHeight()) / 2;
         subjects.setLocation(width, height);
         subjects.show();
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_cmdSubjectsActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void cmdPromotionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdPromotionsActionPerformed
         // TODO add your handling code here:
         classPromotions classPromotions = new classPromotions();
-        jDesktopPane1.add(classPromotions);
-        int width = (jDesktopPane1.getWidth() - classPromotions.getWidth()) / 2;
-        int height = (jDesktopPane1.getHeight() - classPromotions.getHeight()) / 2;
+        formsContainer.add(classPromotions);
+        int width = (formsContainer.getWidth() - classPromotions.getWidth()) / 2;
+        int height = (formsContainer.getHeight() - classPromotions.getHeight()) / 2;
         classPromotions.setLocation(width, height);
         classPromotions.show();
-    }//GEN-LAST:event_jButton10ActionPerformed
+    }//GEN-LAST:event_cmdPromotionsActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+    private void cmdReportCardsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdReportCardsActionPerformed
         // TODO add your handling code here:
         reportCards reportCards = new reportCards();
-        jDesktopPane1.add(reportCards);
-        int width = (jDesktopPane1.getWidth() - reportCards.getWidth()) / 2;
-        int height = (jDesktopPane1.getHeight() - reportCards.getHeight()) / 2;
+        formsContainer.add(reportCards);
+        int width = (formsContainer.getWidth() - reportCards.getWidth()) / 2;
+        int height = (formsContainer.getHeight() - reportCards.getHeight()) / 2;
         reportCards.setLocation(width, height);
         reportCards.show();
-    }//GEN-LAST:event_jButton11ActionPerformed
+    }//GEN-LAST:event_cmdReportCardsActionPerformed
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+    private void cmdClassesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdClassesActionPerformed
         // TODO add your handling code here:
         classes classes = new classes();
-        jDesktopPane1.add(classes);
-        int width = (jDesktopPane1.getWidth() - classes.getWidth()) / 2;
-        int height = (jDesktopPane1.getHeight() - classes.getHeight()) / 2;
+        formsContainer.add(classes);
+        int width = (formsContainer.getWidth() - classes.getWidth()) / 2;
+        int height = (formsContainer.getHeight() - classes.getHeight()) / 2;
         classes.setLocation(width, height);
         classes.show();
-    }//GEN-LAST:event_jButton12ActionPerformed
+    }//GEN-LAST:event_cmdClassesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -439,23 +439,23 @@ public class DashBoard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JButton cmdClasses;
+    private javax.swing.JButton cmdEditStudent;
+    private javax.swing.JButton cmdEnterMarks;
+    private javax.swing.JButton cmdExamsManagement;
+    private javax.swing.JButton cmdLogout;
+    private javax.swing.JButton cmdMerits;
+    private javax.swing.JButton cmdPromotions;
+    private javax.swing.JButton cmdReportCards;
+    private javax.swing.JButton cmdStudentManagement;
+    private javax.swing.JButton cmdStudentReg;
+    private javax.swing.JButton cmdSubjects;
+    private javax.swing.JButton cmdViewStudents;
+    private javax.swing.JPanel examsManagementPanel;
+    private javax.swing.JDesktopPane formsContainer;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel studentManagementPanel;
     // End of variables declaration//GEN-END:variables
 }

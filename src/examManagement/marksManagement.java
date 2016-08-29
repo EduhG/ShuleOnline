@@ -375,9 +375,9 @@ public class marksManagement {
                             pstmt1.setInt(2, Integer.parseInt(rs.getString("totalMarks")));
                             pstmt1.setString(3, admNo);
                             pstmt1.setString(4, form);
-                            pstmt1.setString(4, merit);
-                            pstmt1.setString(5, term);
-                            pstmt1.setString(6, year);
+                            pstmt1.setString(5, merit);
+                            pstmt1.setString(6, term);
+                            pstmt1.setString(7, year);
 
                             pstmt1.execute();
 

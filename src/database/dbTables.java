@@ -209,6 +209,36 @@ public class dbTables {
         }
     }
     
+    public void totalMarks() {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(dc.DATABASE_URL, dc.USERNAME, dc.PASSWORD);
+
+            String tableName = "totalMarks";
+            
+            String table_query = "CREATE TABLE IF NOT EXISTS "
+                + tableName + " ("
+                + "entryId INTEGER ( 6 ) PRIMARY KEY AUTO_INCREMENT ,"
+                + "admissionNo VARCHAR( 100 ) NOT NULL ,"
+                + "fullName VARCHAR( 200 ) NULL ,"
+                + "form VARCHAR( 200 ) NULL ,"
+                + "term VARCHAR( 200 ) NULL ,"
+                + "merit VARCHAR( 200 ) NULL ,"
+                + "year VARCHAR( 200 ) NULL ,"
+                + "totalMarks INTEGER ( 6 ) NULL ,"
+                + "position INTEGER ( 6 ) NULL)";
+
+            Statement sta = connection.createStatement();
+            int count = sta.executeUpdate(table_query);
+
+            sta.close();
+            connection.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     public void createTables() {
         dc.createDataBase();
         
@@ -219,5 +249,6 @@ public class dbTables {
         streams();
         merits();
         subjectMarks();
+        totalMarks();
     }
 }

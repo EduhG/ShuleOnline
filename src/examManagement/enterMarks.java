@@ -5,6 +5,15 @@
  */
 package examManagement;
 
+import database.dbConnection;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import studentManagement.student;
 import studentManagement.studentManagement;
 
@@ -54,6 +63,23 @@ public class enterMarks extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle("Exams Marks Entry");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
 
         jLabel1.setText("Admision No");
 
@@ -242,6 +268,11 @@ public class enterMarks extends javax.swing.JInternalFrame {
         clearDetails();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        // TODO add your handling code here:
+        getMerits();
+    }//GEN-LAST:event_formInternalFrameOpened
+
     public void clearDetails() {
         txtAdmNo.setText("");
         txtFullName.setText("");
@@ -252,6 +283,43 @@ public class enterMarks extends javax.swing.JInternalFrame {
     public void getStudentDetails(){
         studentManagement.getStudents(txtAdmNo.getText());
         txtFullName.setText(studentManagement.middleName + " " + studentManagement.firstName + " " + studentManagement.lastName);
+    }
+    
+    public void getMerits() {
+        dbConnection dc = new dbConnection();
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        Statement stmt = null;
+        
+        try {
+            Class.forName(dc.JDBC_DRIVER);
+            con = DriverManager.getConnection(dc.DATABASE_URL, dc.USERNAME, dc.PASSWORD);
+            pstmt = con.prepareStatement("SELECT * FROM merits");
+            
+            rs = pstmt.executeQuery();
+            while (rs.next())
+            {  
+                cboMerit.addItem(rs.getString("meritName"));//streamName
+            }
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(enterMarks.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

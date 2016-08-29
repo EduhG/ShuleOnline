@@ -20,9 +20,9 @@ public class studentManagement {
     student student = new student();
     public String admNo;
     public String admDate;
-    public String firstName;
-    public String middleName;
-    public String lastName;
+    public String firstName = "";
+    public String middleName = "";
+    public String lastName = "";
     public String gender = "Male";
     public String dateOfBirth;
     public String birthCertNo;

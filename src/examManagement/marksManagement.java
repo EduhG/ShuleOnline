@@ -63,4 +63,46 @@ public class marksManagement {
         
         return false;
     }
+    
+    public boolean updateStudentMarks(String admNo) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        
+        try {
+            Class.forName(dc.JDBC_DRIVER);
+            con = DriverManager.getConnection(dc.DATABASE_URL, dc.USERNAME, dc.PASSWORD);
+            
+            pstmt = con.prepareStatement("UPDATE subjectMarks SET admissionNo=?, fullName=?, "
+                    + "score=? WHERE admissionNo = ? AND form = ? AND merit = ? AND subject = ?");
+
+            pstmt.setString(1, admNo);
+            pstmt.setString(2, fullName);
+            pstmt.setInt(3, score);
+            
+            pstmt.setString(4, admNo);
+            pstmt.setString(5, form);
+            pstmt.setString(6, merit);
+            pstmt.setString(7, subject);
+
+            pstmt.execute();
+            
+            return true;
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(marksManagement.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        return false;
+    }
 }

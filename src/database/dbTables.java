@@ -193,6 +193,8 @@ public class dbTables {
                 + "form VARCHAR( 200 ) NULL ,"
                 + "subject VARCHAR( 200 ) NULL ,"
                 + "merit VARCHAR( 200 ) NULL ,"
+                + "term VARCHAR( 200 ) NULL ,"
+                + "year VARCHAR( 200 ) NULL ,"
                 + "score INTEGER ( 6 ) NULL ,"
                 + "position INTEGER ( 6 ) NULL)";
 

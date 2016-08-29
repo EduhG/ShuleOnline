@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import studentManagement.student;
 import studentManagement.studentManagement;
 
@@ -23,13 +25,18 @@ import studentManagement.studentManagement;
  */
 public class enterMarks extends javax.swing.JInternalFrame {
 
+    dbConnection dc = new dbConnection();
     student student = new student();
     studentManagement studentManagement = new studentManagement();
+    marksManagement marksManagement = new marksManagement();
+    public String admissionNo, fullName, form, subject, merit, term, year;
+    public int score;
     /**
      * Creates new form enterMarks
      */
     public enterMarks() {
         initComponents();
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(100);
     }
 
     /**
@@ -53,6 +60,8 @@ public class enterMarks extends javax.swing.JInternalFrame {
         cboMerit = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jSpinner1 = new javax.swing.JSpinner();
+        jLabel6 = new javax.swing.JLabel();
+        cboClass = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
@@ -132,6 +141,10 @@ public class enterMarks extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Year");
 
+        jLabel6.setText("Form");
+
+        cboClass.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Class" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -145,10 +158,14 @@ public class enterMarks extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cboTerm, 0, 141, Short.MAX_VALUE)
                     .addComponent(cboMerit, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(jSpinner1, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSpinner1)
+                    .addComponent(cboClass, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -163,7 +180,9 @@ public class enterMarks extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(cboMerit, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboMerit, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(cboClass, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -175,17 +194,27 @@ public class enterMarks extends javax.swing.JInternalFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Subject Name", "Marks"
             }
         ));
         jTable1.setRowHeight(25);
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("SAVE DETAILS");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("CANCEL");
 
         jButton3.setText("Search");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Cancel");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -222,7 +251,7 @@ public class enterMarks extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -271,7 +300,49 @@ public class enterMarks extends javax.swing.JInternalFrame {
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         // TODO add your handling code here:
         getMerits();
+        getForms();
     }//GEN-LAST:event_formInternalFrameOpened
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        setDetails();
+        if(marksManagement.getStudentsMarks(txtAdmNo.getText())) {
+            loadStudentsMarks(txtAdmNo.getText());
+        } else {
+            if (marksManagement.initializeStudentMarks(txtAdmNo.getText())) {
+                loadStudentsMarks(txtAdmNo.getText());
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Could not Initialize. \nPlease contact the system admin");
+            }
+        }
+        
+        loadStudentsMarks(txtAdmNo.getText());
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if (updateDetails() && rankSubjects()) {
+            JOptionPane.showMessageDialog(rootPane, "Record Updated Successfully");
+            loadStudentsMarks(txtAdmNo.getText());
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Record Not Saved. \nPlease contact the system admin");
+        }
+//        if(marksManagement.getStudentsMarks(txtAdmNo.getText())) {
+//            if (marksManagement.updateStudentMarks(txtAdmNo.getText())) {
+//                JOptionPane.showMessageDialog(rootPane, "Record Updated Successfully");
+//            } else {
+//                JOptionPane.showMessageDialog(rootPane, "Record Not Saved. \nPlease contact the system admin");
+//            }
+//        } else {
+//            if (marksManagement.addStudentMarks(marksManagement)) {
+//                JOptionPane.showMessageDialog(rootPane, "Record Updated Successfully");
+//            } else {
+//                JOptionPane.showMessageDialog(rootPane, "Record Not Saved. \nPlease contact the system admin");
+//            }
+//        }
+        
+        //loadStudentsMarks(txtAdmNo.getText());
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public void clearDetails() {
         txtAdmNo.setText("");
@@ -279,14 +350,104 @@ public class enterMarks extends javax.swing.JInternalFrame {
         cboTerm.setSelectedItem("Choose Term");
         cboMerit.setSelectedItem("Choose Merit");
     }
+    //jTable1.getValueAt(jTable1.getSelectedRow(), jTable1.getSelectedColumn()).toString()
+    public void setDetails(){
+        marksManagement.admissionNo = txtAdmNo.getText();
+        marksManagement.fullName = txtFullName.getText();
+        marksManagement.form = cboClass.getSelectedItem().toString();
+        marksManagement.subject = subject;
+        marksManagement.merit = cboMerit.getSelectedItem().toString();
+        marksManagement.term = cboTerm.getSelectedItem().toString();
+        marksManagement.year = jSpinner1.getValue().toString();
+        marksManagement.score = score;
+    }
     
     public void getStudentDetails(){
         studentManagement.getStudents(txtAdmNo.getText());
         txtFullName.setText(studentManagement.middleName + " " + studentManagement.firstName + " " + studentManagement.lastName);
     }
     
-    public void getMerits() {
+    public boolean updateDetails(){
+        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+        int rows = dtm.getRowCount();
+        try {
+            for (int i = 0 ; i < rows ; i++) {
+                score = Integer.parseInt(dtm.getValueAt(i,1).toString());
+                subject = dtm.getValueAt(i,0).toString();
+                System.out.println(score);
+                setDetails();
+                
+                if (!marksManagement.updateStudentMarks(txtAdmNo.getText())) {
+                    return false;
+                }
+            }
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+    
+    public boolean rankSubjects(){
+        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+        int rows = dtm.getRowCount();
+        try {
+            for (int i = 0 ; i < rows ; i++) {
+                subject = dtm.getValueAt(i,0).toString();
+                setDetails();
+                
+                if (marksManagement.studentsSubjectRanking(txtAdmNo.getText())) {
+                    return true;
+                }
+            }
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+    
+    public void getForms() {
         dbConnection dc = new dbConnection();
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        Statement stmt = null;
+        
+        //cboClasses.removeAllItems();
+        //cboClasses.addItem("Choose Class");
+        
+        try {
+            Class.forName(dc.JDBC_DRIVER);
+            con = DriverManager.getConnection(dc.DATABASE_URL, dc.USERNAME, dc.PASSWORD);
+            pstmt = con.prepareStatement("SELECT * FROM classes");
+            
+            rs = pstmt.executeQuery();
+            while (rs.next())
+            {  
+                cboClass.addItem(rs.getString("className"));//streamName
+            }
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(enterMarks.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public void getMerits() {
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -321,8 +482,66 @@ public class enterMarks extends javax.swing.JInternalFrame {
             }
         }
     }
+    
+    public void loadStudentsMarks(String admNo) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        Statement stmt = null;
+        
+        setDetails();
+        
+        try {
+            Class.forName(dc.JDBC_DRIVER);
+            con = DriverManager.getConnection(dc.DATABASE_URL, dc.USERNAME, dc.PASSWORD);
+            pstmt = con.prepareStatement("SELECT subject, score FROM subjectMarks WHERE admissionNo = ? "
+                    + "AND form = ? AND merit = ? AND term = ? AND year = ?");
+            
+            pstmt.setString(1, admNo);
+            pstmt.setString(2, marksManagement.form);
+            pstmt.setString(3, marksManagement.merit);
+            pstmt.setString(4, marksManagement.term);
+            pstmt.setString(5, marksManagement.year);
+            
+            rs = pstmt.executeQuery();
+            
+            while (jTable1.getRowCount() > 0) {
+                ((DefaultTableModel) jTable1.getModel()).removeRow(0);
+            }
+
+            //Creating Object []rowData for jTable's Table Model        
+            int columns = rs.getMetaData().getColumnCount();
+            while (rs.next())
+            {  
+                Object[] row = new Object[columns];
+                for (int i = 1; i <= columns; i++)
+                {  
+                    row[i - 1] = rs.getObject(i); // 1
+                }
+                ((DefaultTableModel) jTable1.getModel()).insertRow(rs.getRow() - 1,row);
+            }
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(studentManagement.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cboClass;
     private javax.swing.JComboBox<String> cboMerit;
     private javax.swing.JComboBox<String> cboTerm;
     private javax.swing.JButton jButton1;
@@ -334,6 +553,7 @@ public class enterMarks extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
